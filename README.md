@@ -1,56 +1,99 @@
-# Welcome to your Expo app 👋
+# Skillio — Home Screen
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+React Native (Expo) take-home for Skillio’s student home screen — UI/UX focused EdTech experience for learners aged **10–20**.
 
-## Get started
+Energetic and personal, not a corporate dashboard. Palette starts from **`#08A4B3`** + white, with coral accents for primary actions.
 
-1. Install dependencies
+## Demo
 
-   ```bash
-   npm install
-   ```
+![Skillio home screen demo](docs/demo/skillio-home.gif)
 
-2. Start the app
+## Screenshots
 
-   ```bash
-   npx expo start
-   ```
+### Default — class booked, practice waiting
 
-In the output, you'll find options to open the app in a
+![Default home with daily practice and upcoming class](docs/screenshots/01-default-home.png)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Progress & skill snapshot
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+![CEFR progress ring and skill bars](docs/screenshots/02-progress-skills.png)
 
-## Get a fresh project
+### No class scheduled
 
-When you're ready, run:
+![Empty class state with Book a class CTA](docs/screenshots/03-no-class.png)
+
+### Practice done — view results
+
+![Completed daily practice with results](docs/screenshots/04-practice-done.png)
+
+### New learner — no skill data yet
+
+![Empty skill snapshot for new learner](docs/screenshots/05-new-learner.png)
+
+### No lessons remaining
+
+![Subscription depleted with top-up CTA](docs/screenshots/06-no-lessons.png)
+
+### No active subscription
+
+![Free / no plan empty state](docs/screenshots/07-no-subscription.png)
+
+## What’s on the home screen
+
+| Area | Behaviour |
+| --- | --- |
+| **Daily practice** | Start when incomplete · View results when done |
+| **Class status** | Join when scheduled · Book CTA (or locked) when not |
+| **Subscription** | Tier + lessons remaining · top-up / see-plans edge states |
+| **Progress** | Current → next CEFR level + animated overall % |
+| **Skill snapshot** | Grammar, vocab, pronunciation, speaking + growth |
+
+Use the **States** tab to flip demo scenarios; Home updates live with entrance animations.
+
+## Extra fields (beyond the brief schema)
+
+| Field | Why |
+| --- | --- |
+| `streakDays` | Quick habit motivator next to the greeting |
+| `weeklyXp` / `weeklyXpGoal` | Soft weekly goal without overcrowding the screen |
+| `dailyPractice.title`, `estimatedMinutes`, `focusSkill`, `xpReward` | Enough for a clear Start state |
+| `dailyPractice.scorePercent`, `wordsPracticed` | Enough for a View Results state |
+| `scheduledClass.durationMinutes`, `meetingId` | Join context without extra screens |
+
+## Design & polish
+
+- Teal brand `#08A4B3`, coral CTAs, soft teal-mist background
+- Light + dark via system color scheme
+- Micro-interactions: staggered fade-ins, progress ring, skill bars, practice pulse, press scale + haptics
+
+## Run locally
 
 ```bash
-npm run reset-project
+npm install
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Then open iOS Simulator, Android emulator, or Expo Go.
 
-### Other setup steps
+```bash
+npx tsc --noEmit   # typecheck
+npx expo lint      # lint
+```
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+## Project layout
 
-## Learn more
+```
+src/
+  app/                 # Expo Router screens (Home, States)
+  components/home/     # Home UI sections
+  context/             # Demo scenario provider
+  data/home-mock.ts    # Hardcoded scenarios
+  types/home.ts
+docs/
+  screenshots/         # Key UI states
+  demo/                # Screen recording (GIF)
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Evaluation focus (from the brief)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+UI/UX judgment and execution — information hierarchy, how the interface feels, and polish of animations / micro-interactions. Edge and empty states are intentional bonus coverage.
