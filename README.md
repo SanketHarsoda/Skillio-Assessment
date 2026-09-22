@@ -93,7 +93,3 @@ docs/
   screenshots/         # Key UI states
   demo/                # Screen recording (GIF)
 ```
-
-## Evaluation focus (from the brief)
-
-UI/UX judgment and execution — information hierarchy, how the interface feels, and polish of animations / micro-interactions. Edge and empty states are intentional bonus coverage.
